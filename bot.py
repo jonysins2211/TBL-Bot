@@ -66,7 +66,7 @@ def crawl_tbl():
                         continue
                     link = href.strip()
                     raw_text = tag.get_text(strip=True)
-                    title = raw_text.replace("www.1TamilBlasters.red - ", "")\
+                    title = raw_text.replace("www.1TamilBlasters.garden - ", "")\
                                     .rstrip(".torrent").strip()
                     size = extract_size(raw_text)
 
@@ -134,7 +134,7 @@ class MN_Bot(Client):
                             resp = scraper.get(file["link"], timeout=10)
                             resp.raise_for_status()
                             file_bytes = io.BytesIO(resp.content)
-                            thumbnail ="https://i.ibb.co/vCn6v8YD/photo-2026-03-30-09-22-38-7622976671569674256.jpg"
+                            thumbnail ="https://ibb.co/HpFfGKpN"
                             filename = file["title"].replace(" ", "_") + ".torrent"
                             caption = (
                                 f"{file['title']}\n"
