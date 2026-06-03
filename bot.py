@@ -37,7 +37,7 @@ def extract_size(text):
 
 # Crawl 1TamilBlasters for torrent files, returning topic URL + its files
 def crawl_tbl():
-    base_url = "https://www.1tamilblasters.garden/"
+    base_url = "https://www.1tamilblasters.garden"
     torrents = []
     scraper = cloudscraper.create_scraper()
 
@@ -134,6 +134,7 @@ class MN_Bot(Client):
                             resp = scraper.get(file["link"], timeout=10)
                             resp.raise_for_status()
                             file_bytes = io.BytesIO(resp.content)
+                            thumbnail ="https://ibb.co/HpFfGKpN"
                             filename = file["title"].replace(" ", "_") + ".torrent"
                             caption = (
                                 f"{file['title']}\n"
@@ -144,6 +145,7 @@ class MN_Bot(Client):
                                 self.channel_id,
                                 file_bytes,
                                 file_name=filename,
+                                thumb=thumbnail,
                                 caption=caption
                             )
                             self.last_posted.add(file["link"])
@@ -179,3 +181,4 @@ class MN_Bot(Client):
 if __name__ == "__main__":
     threading.Thread(target=run_flask, daemon=True).start()
     MN_Bot().run()
+
